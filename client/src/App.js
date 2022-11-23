@@ -2,6 +2,7 @@ import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Menu from "./Components/Menu";
+import Navbar from "./Components/Navbar";
 
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
 
   return (
     <div className="App">
-    <div> Welp! </div>
-    <Menu/>
+      <Navbar></Navbar>
+      <Menu/>
         <div className="border rounded border-gray-500 bg-slate-700 p-4 text-white">
           <h1>Express</h1>
           <p className="text-lg py-2">
