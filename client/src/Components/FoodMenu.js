@@ -9,11 +9,13 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { ChevronDownIcon} from '@chakra-ui/icons'
+import FoodItem from "./Components/FoodItem";
 
 
 function FoodMenu() {
     const [currTime, setCurrTime] = useState('Lunch');
     const [currDH, setCurrDH] = useState('Crossroads');
+    const [foodData, setFoodData] = useState();
 
     const updateMenu = (dh, time) => {
       setCurrDH(dh);
@@ -83,7 +85,17 @@ function FoodMenu() {
             </>
           )}
         </Menu>
+
+
+        {
+        
+        foodData && foodData.map(d =>
+          <FoodItem title={d.title} rating={d.rating} key={d.id} />
+        )
+      }
       </div>
+
+      
     );
   }
   
