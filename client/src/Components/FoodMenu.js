@@ -20,20 +20,21 @@ function FoodMenu() {
     const updateMenu = (dh, time) => {
       setCurrDH(dh);
       setCurrTime(time);
-      
-      setFoodData([
-      {
-        title: "Pasta",
-        rating: 0
-      },
-      {
-        title: "Rice",
-        rating: 0
-      }
-      ])
       // need to make some axios get request
+      let x = [
+        {
+          title: "Pasta",
+          rating: 0
+        },
+        {
+          title: "Rice",
+          rating: 0
+        }
+        ];
+      setFoodData([...x]);
+      console.log(foodData);
+      
     }
-
     return (
       <div>
       <div style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>

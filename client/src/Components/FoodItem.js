@@ -5,6 +5,7 @@ function FoodItem({title, initialRating, func}) {
     const [rating, setRating] = useState(initialRating);
     const updateRating = (newRating) => {
         //axios post request?
+        setRating(newRating);
       }
 
     return (
@@ -13,10 +14,10 @@ function FoodItem({title, initialRating, func}) {
         {title}
         </h3>
         <p>{rating}</p>
-        <button style={{ margin: '4px'}} onClick={updateRating(rating + 1)}>
+        <button style={{ margin: '4px'}} onClick={() => updateRating(rating + 1)}>
       Incr
     </button>
-    <button style={{ margin: '4px'}} onClick={updateRating(rating - 1)}>
+    <button style={{ margin: '4px'}} onClick={() => updateRating(rating - 1)}>
       Decr
     </button>
 
