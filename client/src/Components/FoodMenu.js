@@ -9,7 +9,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { ChevronDownIcon} from '@chakra-ui/icons'
-import FoodItem from "./Components/FoodItem";
+import FoodItem from "./FoodItem";
 
 
 function FoodMenu() {
@@ -21,12 +21,22 @@ function FoodMenu() {
       setCurrDH(dh);
       setCurrTime(time);
       
+      setFoodData([
+      {
+        title: "Pasta",
+        rating: 0
+      },
+      {
+        title: "Rice",
+        rating: 0
+      }
+      ])
       // need to make some axios get request
     }
 
-
     return (
-      <div style={{display:"flex", justifyContent: "center", paddingBottom: 1000}}>
+      <div>
+      <div style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
         <p style={{paddingRight: 250, fontSize: 70}}>Menus</p>
 
         {/* Dropdown Menus were created using Chakra: https://chakra-ui.com/docs/components/menu/usage */}
@@ -85,14 +95,15 @@ function FoodMenu() {
             </>
           )}
         </Menu>
-
-
-        {
         
+      </div>
+      <div style={{display:"flex", justifyContent: "center", flexDirection:'column'}}>
+        {
         foodData && foodData.map(d =>
-          <FoodItem title={d.title} rating={d.rating} key={d.id} />
+          <FoodItem title={d.title} initialRating={d.rating} key={d.title} func={setFoodData} />
         )
       }
+      </div>
       </div>
 
       
