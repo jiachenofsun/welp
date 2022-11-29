@@ -3,7 +3,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import FoodMenu from "./Components/FoodMenu";
 import Navbar from "./Components/Navbar";
-import { ChakraProvider } from '@chakra-ui/react'
+import CommentsSection from "./Components/CommentsSection";
+import { ChakraProvider } from '@chakra-ui/react';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <FoodMenu/>
+      <CommentsSection/>
         <div className="border rounded border-gray-500 bg-slate-700 p-4 text-white">
           <h1>Express</h1>
           <p className="text-lg py-2">
