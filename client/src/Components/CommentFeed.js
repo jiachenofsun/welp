@@ -19,7 +19,7 @@ function CommentFeed() {
       <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
         {
           comments && comments.map(d =>
-            <Comment author={d.author} message={d.message} timestamp={d.timestamp} />
+            <Comment author={d.author} message={d.message} timestamp={d.timestamp} upvotes={d.upvotes} downvotes={d.downvotes} />
           )
         }
 

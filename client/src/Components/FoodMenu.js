@@ -15,23 +15,24 @@ import FoodItem from "./FoodItem";
 function FoodMenu() {
     const [currTime, setCurrTime] = useState('Lunch');
     const [currDH, setCurrDH] = useState('Crossroads');
-    const [foodData, setFoodData] = useState();
+    const [foodData, setFoodData] = useState([]);
+    const [fullMenu, setFullMenu] = useState({});
+
+    useEffect(() => {
+      axios
+        .get("http://localhost:9000/fetchMenu") //THIS IS YOUR URL OF YOUR API
+        .then((data)=>{setFullMenu(data.data.menu); console.log("received menu", data.data.menu)}) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
+        .catch((error) => console.log(error));  //ERROR CATCHING IN CASE WE RECIEVE AN ERROR
+      }, [])
 
     const updateMenu = (dh, time) => {
       setCurrDH(dh);
       setCurrTime(time);
-      // need to make some axios get request
-      let x = [
-        {
-          title: "Pasta",
-          rating: 0
-        },
-        {
-          title: "Rice",
-          rating: 0
-        }
-        ];
-      setFoodData([...x]);
+      let diningHall = currDH.toLowerCase().replace(/\s/g, '');
+      let currentTime = currTime.toLowerCase().replace(/\s/g, '');
+      let selectedMenu = fullMenu[diningHall][currentTime];
+
+      setFoodData([...selectedMenu]);
       console.log(foodData);
       
     }
@@ -101,7 +102,7 @@ function FoodMenu() {
       <div style={{display:"flex", justifyContent: "center", flexDirection:'column'}}>
         {
         foodData && foodData.map(d =>
-          <FoodItem title={d.title} initialRating={d.rating} key={d.title} func={setFoodData} />
+          <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} func={setFoodData} />
         )
       }
       </div>

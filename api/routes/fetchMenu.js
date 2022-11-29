@@ -4,16 +4,23 @@ var {JSDOM} = jsdom; // jsdom is a library used to fetch and parse html!
 var router = express.Router();
 
 const url = "https://caldining.berkeley.edu/menus/"; // link to cal dining website
+let lastUpdatedDay = -1;
 
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  // fromURL fetches the HTML file of the website url
-  await JSDOM.fromURL(url).then(dom => {
+
+  if (lastUpdatedDay == new Date(Date.now()).getDate()) {
+    // if menu has already been fetched today, return the menu
+    res.json({ title: "Here's the menu!", menu: menu }); 
+  } else {
+    // otherwise, fetch the html from the url and update our menu
+    await JSDOM.fromURL(url).then(dom => {
       parseHTML(dom); // dom -> the document of the website
+      lastUpdatedDay = new Date(Date.now()).getDate();
       res.json({ title: "Here's the menu!", menu: menu }); // send the menu as a response back to client
-  });
-  
+    });
+  }
 });
 
 // dictionary that contains our menu as a dictionary
@@ -63,7 +70,7 @@ function parseHTML(dom) {
           let menuItems = [];
           data.forEach(element => {
               if(element.className == "") {
-                  menuItems.push(element.innerHTML);
+                  menuItems.push({name: element.innerHTML, upvotes: 0, downvotes: 0});
               }
               
           });
