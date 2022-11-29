@@ -8,9 +8,9 @@ function CommentsSection() {
 
     return (
       <div style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
-        <p style={{paddingRight: 250, fontSize: 70}}>Comments</p>
-        <CommentForm></CommentForm>
-        <CommentFeed></CommentFeed>
+       <p style={{paddingRight: 250, fontSize: 70}}>Comments</p>
+       <CommentForm></CommentForm>
+       <CommentFeed></CommentFeed>
       </div>
 
     );
