@@ -22,8 +22,10 @@ function FoodMenu() {
     useEffect(() => {
       axios
         .get("http://localhost:9000/fetchMenu") //THIS IS YOUR URL OF YOUR API
-        .then((data)=>{setFullMenu(data.data.menu);
-          console.log("received menu", data.data.menu);}) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
+        .then((data)=>{
+          setFullMenu(data.data.menu)
+          console.log("received menu", data.data.menu);
+        }) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
         .catch((error) => console.log(error));  //ERROR CATCHING IN CASE WE RECIEVE AN ERROR
       }, [])
       
@@ -31,10 +33,11 @@ function FoodMenu() {
       setCurrDH(dh);
       setCurrTime(time);
     }
+    
 
     // FOR WHEN FULLMENU IS FIRST LOADED UP
     useEffect(() => {
-      if (Object.keys(fullMenu).length !== 0) {
+      if (Object.keys(fullMenu).length !== 0 && !isMounted.current) {
         isMounted.current = true;
         let diningHall = 'crossroads';
         let currentTime = 'lunch';
@@ -50,6 +53,7 @@ function FoodMenu() {
         let currentTime = currTime.toLowerCase().replace(/\s/g, '');
         let selectedMenu = fullMenu[diningHall][currentTime];
         setFoodData([...selectedMenu]);
+        console.log("useEffect works", selectedMenu);
       }
     }, [currDH, currTime, fullMenu])
 
@@ -119,7 +123,7 @@ function FoodMenu() {
       <div style={{display:"flex", justifyContent: "center", flexDirection:'column'}}>
         {
         foodData && foodData.map(d =>
-          <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} />
+          <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} func={setFullMenu}/>
         )
       }
       </div>

@@ -1,18 +1,18 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-function FoodItem({title, initialRating, location, time}) {
+function FoodItem({title, initialRating, location, time, func}) {
     const [rating, setRating] = useState(initialRating);
     const upvote = () => {
       axios
         .post("http://localhost:9000/fetchMenu/upvote", {name:title, time, location})
-        .then((res) => {setRating(rating + 1); console.log(res)})
+        .then((res) => {func(res.data.menu); setRating(rating + 1); console.log(res.data.menu)})
         .catch((error) => console.log(error));
     }
     const downvote = () => {
       axios
         .post("http://localhost:9000/fetchMenu/downvote", {name:title, time, location})
-        .then((res) => {setRating(rating - 1); console.log(res)})
+        .then((res) => {func(res.data.menu); setRating(rating - 1); console.log(res)})
         .catch((error) => console.log(error));
     }
     return (
