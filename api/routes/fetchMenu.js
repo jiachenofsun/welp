@@ -23,6 +23,36 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+/*POST Comments */
+router.post('/upvote/', function(req, res, next) {
+  // should receive dining hall, time, and food item name
+  const location = req.body.location.toLowerCase().replace(/\s/g, '');
+  const time = req.body.time.toLowerCase().replace(/\s/g, '');
+  const name = req.body.name;
+  for (let item of menu[location][time]) {
+    if (item.name === name) {
+      item.upvotes++;
+      break;
+    }
+  }
+  res.json({ title: "Here's the upvoted menu!", menu: menu })
+});
+
+/*POST Comments */
+router.post('/downvote/', function(req, res, next) {
+  // should receive dining hall, time, and food item name
+  const location = req.body.location.toLowerCase().replace(/\s/g, '');
+  const time = req.body.time.toLowerCase().replace(/\s/g, '');
+  const name = req.body.name;
+  for (let item of menu[location][time]) {
+    if (item.name === name) {
+      item.downvotes++;
+      break;
+    }
+  }
+  res.json({ title: "Here's the downvoted menu!", menu: menu })
+});
+
 // dictionary that contains our menu as a dictionary
 let menu = {
   crossroads: {},

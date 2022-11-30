@@ -11,6 +11,8 @@ router.get('/', function(req, res, next) {
 
 /*POST Comments */
 router.post('/', function(req, res, next) {
+
+  // requires author, message, timestamp, and upvotes, downvotes
     comments = [...comments, {author: req.body.author, messsage:req.body.message, timestamp:req.body.timestamp, upvotes: 0, downvotes: 0}];
     res.json({comments: comments});
   });
