@@ -1,6 +1,6 @@
 // import "./Menu.css";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Menu,
   MenuButton,
@@ -17,25 +17,42 @@ function FoodMenu() {
     const [currDH, setCurrDH] = useState('Crossroads');
     const [foodData, setFoodData] = useState([]);
     const [fullMenu, setFullMenu] = useState({});
+    const isMounted = useRef(false);
 
     useEffect(() => {
       axios
         .get("http://localhost:9000/fetchMenu") //THIS IS YOUR URL OF YOUR API
-        .then((data)=>{setFullMenu(data.data.menu); console.log("received menu", data.data.menu)}) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
+        .then((data)=>{setFullMenu(data.data.menu);
+          console.log("received menu", data.data.menu);}) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
         .catch((error) => console.log(error));  //ERROR CATCHING IN CASE WE RECIEVE AN ERROR
       }, [])
-
+      
     const updateMenu = (dh, time) => {
       setCurrDH(dh);
       setCurrTime(time);
-      let diningHall = currDH.toLowerCase().replace(/\s/g, '');
-      let currentTime = currTime.toLowerCase().replace(/\s/g, '');
-      let selectedMenu = fullMenu[diningHall][currentTime];
-
-      setFoodData([...selectedMenu]);
-      console.log(foodData);
-      
     }
+
+    // FOR WHEN FULLMENU IS FIRST LOADED UP
+    useEffect(() => {
+      if (Object.keys(fullMenu).length !== 0) {
+        isMounted.current = true;
+        let diningHall = 'crossroads';
+        let currentTime = 'lunch';
+        let selectedMenu = fullMenu[diningHall][currentTime];
+        setFoodData([...selectedMenu]);
+      }
+    }, [fullMenu])
+
+    // FOR SUBSEQUENT CHANGES TO CURRTIME OR CURRDH
+    useEffect(() => {
+      if (isMounted.current) {
+        let diningHall = currDH.toLowerCase().replace(/\s/g, '');
+        let currentTime = currTime.toLowerCase().replace(/\s/g, '');
+        let selectedMenu = fullMenu[diningHall][currentTime];
+        setFoodData([...selectedMenu]);
+      }
+    }, [currDH, currTime, fullMenu])
+
     return (
       <div>
       <div style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
