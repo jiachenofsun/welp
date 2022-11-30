@@ -119,7 +119,7 @@ function FoodMenu() {
       <div style={{display:"flex", justifyContent: "center", flexDirection:'column'}}>
         {
         foodData && foodData.map(d =>
-          <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} func={setFoodData} />
+          <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} />
         )
       }
       </div>
