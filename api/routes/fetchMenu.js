@@ -9,8 +9,8 @@ let lastUpdatedDay = -1;
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-
-  if (lastUpdatedDay == new Date(Date.now()).getDate()) {
+  // lastUpdatedDay == new Date(Date.now()).getDate()
+  if (false) {
     // if menu has already been fetched today, return the menu
     res.json({ title: "Here's the menu!", menu: menu }); 
   } else {
@@ -98,17 +98,19 @@ function parseHTML(dom) {
           
           // grab the inside text of every span
           let menuItems = [];
+          let intermediate = [];
           data.forEach(element => {
               if(element.className == "") {
-                  menuItems.push({name: element.innerHTML, upvotes: 0, downvotes: 0});
+                intermediate.push(element.innerHTML);
               }
-              
           });
-          
+          intermediate = [...new Set(intermediate)];
+          intermediate.forEach(item => {
+            menuItems.push({name: item, upvotes: 0, downvotes: 0});
+          });
           // set each entry in the menu dictionary to the menu list we found 
           menu[name][time] = menuItems;
       });
-      
   });
 }
 
