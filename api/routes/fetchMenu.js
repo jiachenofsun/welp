@@ -10,8 +10,10 @@ let lastUpdatedDay = -1;
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   // lastUpdatedDay == new Date(Date.now()).getDate()
-  if (res.json({ title: "Here's the menu!", menu: menu })) {
+  if (lastUpdatedDay == new Date(Date.now()).getDate()) {
     // if menu has already been fetched today, return the menu
+    res.json({ title: "Here's the menu!", menu: menu }); // send the menu as a response back to client
+
   } else {
     // otherwise, fetch the html from the url and update our menu
     await JSDOM.fromURL(url).then(dom => {
