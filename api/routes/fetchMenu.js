@@ -102,7 +102,7 @@ function parseHTML(dom) {
           let intermediate = [];
           data.forEach(element => {
               if(element.className == "") {
-                intermediate.push(element.innerHTML);
+                intermediate.push(element.innerHTML.replace('&amp;', 'and'));
               }
           });
           intermediate = [...new Set(intermediate)];
