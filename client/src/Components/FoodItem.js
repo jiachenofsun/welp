@@ -1,5 +1,10 @@
 import axios from "axios";
+import "./FoodItem.css";
 import React, { useState, useEffect } from "react";
+import { IconButton } from '@chakra-ui/react'
+import { ArrowUpIcon, ArrowDownIcon} from '@chakra-ui/icons'
+
+
 
 function FoodItem({title, initialRating, location, time, func}) {
     const [rating, setRating] = useState(initialRating);
@@ -16,19 +21,14 @@ function FoodItem({title, initialRating, location, time, func}) {
         .catch((error) => console.log(error));
     }
     return (
-    <div style={{ textAlign: 'center', marginBottom: '12px'}}>
-        <h3 style={{fontSize:40}}>
-        {title}
-        </h3>
-        <p>{rating}</p>
-        <button style={{ margin: '4px'}} onClick={() => upvote()}>
-      Incr
-    </button>
-    <button style={{ margin: '4px'}} onClick={() => downvote()}>
-      Decr
-    </button>
-
-    </div>
+      <div class="overallContainer">
+        <div class="ratingContainer">
+        <p class="rating" style={{color: rating >= 0 ? 'rgb(65, 192, 255)' : 'darksalmon'}}>{rating}</p>
+        </div>
+        <IconButton class="btn" aria-label='upvote' icon={<ArrowUpIcon />} onClick={() => upvote()} />
+        <IconButton class="btn" aria-label='downvote' icon={<ArrowDownIcon />} onClick={() => downvote()} />
+        <h3 class="title">{title}</h3>
+      </div>
     );
   }
   

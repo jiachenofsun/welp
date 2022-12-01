@@ -1,4 +1,4 @@
-// import "./Menu.css";
+import "./FoodMenu.css";
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import {
@@ -59,8 +59,8 @@ function FoodMenu() {
 
     return (
       <div>
-      <div style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
-        <p style={{paddingRight: 250, fontSize: 70}}>Menus</p>
+      <div class="parentContainer">
+        <p class="menuText">Menus</p>
 
         {/* Dropdown Menus were created using Chakra: https://chakra-ui.com/docs/components/menu/usage */}
         {/* TIME DROPDOWN MENU */}
@@ -70,7 +70,7 @@ function FoodMenu() {
               <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}
               px={4}
               py={2}
-              minW="0" w={'135px'}
+              minW="0" w={'225px'}
               transition='all 0.2s'
               borderRadius='md'
               borderWidth='1px'
@@ -90,7 +90,6 @@ function FoodMenu() {
           )}
         </Menu>
 
-
         {/* DINING HALL DROPDOWN MENU */}
         <Menu>
           {({ isOpen }) => (
@@ -98,7 +97,7 @@ function FoodMenu() {
               <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}
               px={4}
               py={2}
-              minW="0" w={'150px'}
+              minW="0" w={'250px'}
               transition='all 0.2s'
               borderRadius='md'
               borderWidth='1px'
@@ -120,7 +119,7 @@ function FoodMenu() {
         </Menu>
         
       </div>
-      <div style={{display:"flex", justifyContent: "center", flexDirection:'column'}}>
+      <div style={{display:"flex", justifyContent: "center", flexDirection:'column', alignItems: "center"}}>
         {
         foodData && foodData.map(d =>
           <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} func={setFullMenu}/>
