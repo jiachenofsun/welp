@@ -16,14 +16,16 @@ function CommentFeed() {
     }, [])
 
     return (
-      <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
+        <>
+        <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
+        </div>
         {
           comments && comments.map(d =>
             <Comment author={d.author} message={d.message} timestamp={d.timestamp} upvotes={d.upvotes} downvotes={d.downvotes} />
           )
         }
-
-      </div>
+        <Comment author="arjun" message="poggers foomd yummy yes" timestamp="2022" upvotes="5" downvotes="3"></Comment>
+        </>
     );
   }
   
