@@ -119,8 +119,7 @@ function FoodMenu() {
          </Menu>
          
        </div>
-       <hr className="w-2/5 m-auto"></hr>
-       <div className="mt-5 p-4" style={{display:"flex", justifyContent: "center", flexDirection:'column', alignItems: "center"}}>
+       <div className="mt-5 pt-7 pb-7" style={{display:"flex", justifyContent: "center", flexDirection:'column', alignItems: "center"}}>
          {
          foodData && foodData.map(d =>
            <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} func={setFullMenu}/>
