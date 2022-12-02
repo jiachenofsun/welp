@@ -16,7 +16,7 @@ function CommentFeed() {
     }, [])
 
     return (
-        <>
+        <div style={{paddingBottom: 50}}>
         <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
         </div>
         {
@@ -25,7 +25,8 @@ function CommentFeed() {
           )
         }
         <Comment author="arjun" message="poggers foomd yummy yes" timestamp="2022" upvotes="5" downvotes="3"></Comment>
-        </>
+        <Comment author="arjun" message="poggers foomd yummy yes asdfj l;asdjf lasdjf sdl fjlsdk jlkdsj lkjsd lj" timestamp="2022" upvotes="5" downvotes="3"></Comment>
+        </div>
     );
   }
   

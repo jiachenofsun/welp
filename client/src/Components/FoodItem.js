@@ -22,12 +22,12 @@ function FoodItem({title, initialRating, location, time, func}) {
     }
     return (
       <div class="overallContainer">
-        <div class="ratingContainer">
-        <p class="rating" style={{color: rating >= 0 ? 'rgb(65, 192, 255)' : 'darksalmon'}}>{rating}</p>
-        </div>
-        <IconButton class="btn" aria-label='upvote' icon={<ArrowUpIcon />} onClick={() => upvote()} />
-        <IconButton class="btn" aria-label='downvote' icon={<ArrowDownIcon />} onClick={() => downvote()} />
-        <h3 class="title">{title}</h3>
+       <div class="ratingContainer">
+       <p class="rating" style={{color: rating >= 0 ? 'rgb(65, 192, 255)' : 'darksalmon'}}>{rating}</p>
+       </div>
+       <IconButton class="btn" aria-label='upvote' icon={<ArrowUpIcon />} onClick={() => upvote()} />
+       <IconButton class="btn" aria-label='downvote' icon={<ArrowDownIcon />} onClick={() => downvote()} />
+       <h3 class="title">{title}</h3>
       </div>
     );
   }

@@ -9,7 +9,7 @@ function CommentsSection() {
 
     return (
       <>
-        <div class="parentContainer" style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
+        <div class="parentContainer" style={{display:"flex", justifyContent: "center", paddingBottom: 20}}>
         <p class="menuText" style={{paddingRight: 20}}>Comments</p>
         <CommentForm></CommentForm>
         
