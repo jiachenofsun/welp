@@ -25,6 +25,7 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <FoodMenu/>
+      <hr className="w-2/5 m-auto"></hr>
       <CommentsSection/>
         <div className="border rounded border-gray-500 bg-slate-700 p-4 text-white">
           <h1>Express</h1>

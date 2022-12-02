@@ -58,74 +58,75 @@ function FoodMenu() {
     }, [currDH, currTime, fullMenu])
 
     return (
-      <div>
-      <div class="parentContainer">
-        <p class="menuText">Menus</p>
-
-        {/* Dropdown Menus were created using Chakra: https://chakra-ui.com/docs/components/menu/usage */}
-        {/* TIME DROPDOWN MENU */}
-        <Menu>
-          {({ isOpen }) => (
-            <>
-              <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}
-              px={4}
-              py={2}
-              minW="0" w={'225px'}
-              transition='all 0.2s'
-              borderRadius='md'
-              borderWidth='1px'
-              _hover={{ bg: 'gray.100' }}
-              _expanded={{ bg: 'blue.50' }}
-              _focus={{ boxShadow: 'outline' }}          
-              >
-                {/* {isOpen ? 'Close' : 'Open'} if you want to do anything w opening and closing the menu*/} 
-                {currTime}
-              </MenuButton>
-              <MenuList>
-                <MenuItem onClick={() => updateMenu(currDH, 'Breakfast')}>Breakfast</MenuItem>
-                <MenuItem onClick={() => updateMenu(currDH, 'Lunch')}>Lunch</MenuItem>
-                <MenuItem onClick={() => updateMenu(currDH, 'Dinner')}>Dinner</MenuItem>
-              </MenuList>
-            </>
-          )}
-        </Menu>
-
-        {/* DINING HALL DROPDOWN MENU */}
-        <Menu>
-          {({ isOpen }) => (
-            <>
-              <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}
-              px={4}
-              py={2}
-              minW="0" w={'250px'}
-              transition='all 0.2s'
-              borderRadius='md'
-              borderWidth='1px'
-              _hover={{ bg: 'gray.100' }}
-              _expanded={{ bg: 'blue.50' }}
-              _focus={{ boxShadow: 'outline' }}          
-              >
-                {/* {isOpen ? 'Close' : 'Open'} if you want to do anything w opening and closing the menu*/} 
-                {currDH}
-              </MenuButton>
-              <MenuList>
-                <MenuItem onClick={() => updateMenu('Cafe 3', currTime)}>Cafe 3</MenuItem>
-                <MenuItem onClick={() => updateMenu('Clark Kerr', currTime)}>Clark Kerr</MenuItem>
-                <MenuItem onClick={() => updateMenu('Crossroads', currTime)}>Crossroads</MenuItem>
-                <MenuItem onClick={() => updateMenu('Foothill', currTime)}>Foothill</MenuItem>
-              </MenuList>
-            </>
-          )}
-        </Menu>
-        
-      </div>
-      <div style={{display:"flex", justifyContent: "center", flexDirection:'column', alignItems: "center"}}>
-        {
-        foodData && foodData.map(d =>
-          <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} func={setFullMenu}/>
-        )
-      }
-      </div>
+      <div className="mt-5">
+       <div class="parentContainer">
+         <p class="menuText">Menus</p>
+      
+         {/* Dropdown Menus were created using Chakra: https://chakra-ui.com/docs/components/menu/usage */}
+         {/* TIME DROPDOWN MENU */}
+         <Menu>
+           {({ isOpen }) => (
+             <>
+               <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}
+               px={4}
+               py={2}
+               minW="0" w={'225px'}
+               transition='all 0.2s'
+               borderRadius='md'
+               borderWidth='1px'
+               _hover={{ bg: 'gray.100' }}
+               _expanded={{ bg: 'blue.50' }}
+               _focus={{ boxShadow: 'outline' }}          
+               >
+                 {/* {isOpen ? 'Close' : 'Open'} if you want to do anything w opening and closing the menu*/} 
+                 {currTime}
+               </MenuButton>
+               <MenuList>
+                 <MenuItem onClick={() => updateMenu(currDH, 'Breakfast')}>Breakfast</MenuItem>
+                 <MenuItem onClick={() => updateMenu(currDH, 'Lunch')}>Lunch</MenuItem>
+                 <MenuItem onClick={() => updateMenu(currDH, 'Dinner')}>Dinner</MenuItem>
+               </MenuList>
+             </>
+           )}
+         </Menu>
+      
+         {/* DINING HALL DROPDOWN MENU */}
+         <Menu>
+           {({ isOpen }) => (
+             <>
+               <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}
+               px={4}
+               py={2}
+               minW="0" w={'250px'}
+               transition='all 0.2s'
+               borderRadius='md'
+               borderWidth='1px'
+               _hover={{ bg: 'gray.100' }}
+               _expanded={{ bg: 'blue.50' }}
+               _focus={{ boxShadow: 'outline' }}          
+               >
+                 {/* {isOpen ? 'Close' : 'Open'} if you want to do anything w opening and closing the menu*/} 
+                 {currDH}
+               </MenuButton>
+               <MenuList>
+                 <MenuItem onClick={() => updateMenu('Cafe 3', currTime)}>Cafe 3</MenuItem>
+                 <MenuItem onClick={() => updateMenu('Clark Kerr', currTime)}>Clark Kerr</MenuItem>
+                 <MenuItem onClick={() => updateMenu('Crossroads', currTime)}>Crossroads</MenuItem>
+                 <MenuItem onClick={() => updateMenu('Foothill', currTime)}>Foothill</MenuItem>
+               </MenuList>
+             </>
+           )}
+         </Menu>
+         
+       </div>
+       <hr className="w-2/5 m-auto"></hr>
+       <div className="mt-5 p-4" style={{display:"flex", justifyContent: "center", flexDirection:'column', alignItems: "center"}}>
+         {
+         foodData && foodData.map(d =>
+           <FoodItem title={d.name} initialRating={d.upvotes - d.downvotes} key={d.name} location={currDH} time={currTime} func={setFullMenu}/>
+         )
+       }
+       </div>
       </div>
 
       

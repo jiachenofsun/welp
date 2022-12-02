@@ -7,8 +7,8 @@ import CommentForm from "./CommentForm";
 function CommentsSection() {
 
     return (
-      <div style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
-       <p style={{paddingRight: 250, fontSize: 70}}>Comments</p>
+      <div class="parentContainer" style={{display:"flex", justifyContent: "center", paddingBottom: 100}}>
+       <p class="menuText" style={{paddingRight: 20}}>Comments</p>
        <CommentForm></CommentForm>
        <CommentFeed></CommentFeed>
       </div>
